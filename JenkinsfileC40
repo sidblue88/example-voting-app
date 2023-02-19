@@ -28,22 +28,23 @@ pipeline{
                     }
                     steps{
                         sh "echo ${REGION} first stage"
-                        sh "sleep 60"
+                        sh "sleep 3"
                     }
 
                 }
                 stage('windows test cases'){
                     steps{
                         sh "echo hello second stage"
-                        sh "sleep 60"
+                        sh "sleep 3"
                     }
                 }
             }
         }
         stage('Build and Push'){
             steps{
-                sh "cd vote"
-                sh "docker build ."
+                sh '''
+                cd vote
+                docker build .'''
             }
         }
 
