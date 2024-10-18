@@ -10,16 +10,22 @@ phases:
     commands:
       - echo Build started
       - echo Building the docker image
-      - docker-compose build vote
+      - docker-compose build
       - docker tag docker.io/library/src-vote:latest 126511412377.dkr.ecr.us-east-1.amazonaws.com/vote:latest
+      - docker tag docker.io/library/src-result:latest 126511412377.dkr.ecr.us-east-1.amazonaws.com/result:latest
+      - docker tag docker.io/library/src-worker:latest 126511412377.dkr.ecr.us-east-1.amazonaws.com/result:latest
 
   post_build:
     commands:
      - echo build completed
      - echo pushing in to docker ECR...
      - docker push 126511412377.dkr.ecr.us-east-1.amazonaws.com/vote:latest
+     - docker push 126511412377.dkr.ecr.us-east-1.amazonaws.com/result:latest
+     - docker push 126511412377.dkr.ecr.us-east-1.amazonaws.com/worker:latest
      - echo Writing image definition file..
-     - printf '[{"name":"%s","imageUri":"%s"}]' "vote" "126511412377.dkr.ecr.us-east-1.amazonaws.com/ecs-example" > imagedefinitions.json
+     - printf '[{"name":"%s","imageUri":"%s"}]' "vote" "126511412377.dkr.ecr.us-east-1.amazonaws.com/vote" > imagedefinitions.json
+     - printf '[{"name":"%s","imageUri":"%s"}]' "result" "126511412377.dkr.ecr.us-east-1.amazonaws.com/result" > imagedefinitions.json
+     - printf '[{"name":"%s","imageUri":"%s"}]' "worker" "126511412377.dkr.ecr.us-east-1.amazonaws.com/worker" > imagedefinitions.json
 
 artifacts:
   files:
