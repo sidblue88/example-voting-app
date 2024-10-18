@@ -13,7 +13,7 @@ phases:
       - docker-compose build
       - docker tag docker.io/library/src-vote:latest 126511412377.dkr.ecr.us-east-1.amazonaws.com/vote:latest
       - docker tag docker.io/library/src-result:latest 126511412377.dkr.ecr.us-east-1.amazonaws.com/result:latest
-      - docker tag docker.io/library/src-worker:latest 126511412377.dkr.ecr.us-east-1.amazonaws.com/result:latest
+      - docker tag docker.io/library/src-worker:latest 126511412377.dkr.ecr.us-east-1.amazonaws.com/worker:latest
 
   post_build:
     commands:
