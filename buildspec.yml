@@ -11,15 +11,15 @@ phases:
       - echo Build started
       - echo Building the docker image
       - docker-compose build .
-      - docker tag example-voting-app/vote:latest 126511412377.dkr.ecr.us-east-1.amazonaws.com/ecs-example:latest
+      - docker tag example-voting-app/vote:latest 126511412377.dkr.ecr.us-east-1.amazonaws.com/vote:latest
 
   post_build:
     commands:
      - echo build completed
      - echo pushing in to docker ECR...
-     - docker push 126511412377.dkr.ecr.us-east-1.amazonaws.com/ecs-example:latest
+     - docker push 126511412377.dkr.ecr.us-east-1.amazonaws.com/vote:latest
      - echo Writing image definition file..
-     - printf '[{"name":"%s","imageUri":"%s"}]' "ecs-example" "126511412377.dkr.ecr.us-east-1.amazonaws.com/ecs-example" > imagedefinitions.json
+     - printf '[{"name":"%s","imageUri":"%s"}]' "vote" "126511412377.dkr.ecr.us-east-1.amazonaws.com/ecs-example" > imagedefinitions.json
 
 artifacts:
   files:
