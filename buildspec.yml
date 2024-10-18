@@ -11,7 +11,7 @@ phases:
       - echo Build started
       - echo Building the docker image
       - docker-compose build .
-      - docker tag ecs-example:latest 126511412377.dkr.ecr.us-east-1.amazonaws.com/ecs-example:latest
+      - docker tag example-voting-app/vote:latest 126511412377.dkr.ecr.us-east-1.amazonaws.com/ecs-example:latest
 
   post_build:
     commands:
