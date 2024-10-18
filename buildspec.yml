@@ -18,9 +18,11 @@ phases:
   post_build:
     commands:
      - echo build completed
-     - echo pushing in to docker ECR...
+     - echo pushing in to docker ECR...vote service
      - docker push 126511412377.dkr.ecr.us-east-1.amazonaws.com/vote:latest
+     - echo pushing in to docker ECR...result service
      - docker push 126511412377.dkr.ecr.us-east-1.amazonaws.com/result:latest
+     - echo pushing in to docker ECR...worker service
      - docker push 126511412377.dkr.ecr.us-east-1.amazonaws.com/worker:latest
      - echo Writing image definition file..
      - printf '[{"name":"%s","imageUri":"%s"}]' "vote" "126511412377.dkr.ecr.us-east-1.amazonaws.com/vote" > imagedefinitions.json
